@@ -1,17 +1,12 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
+import { useState, useTransition } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
-  const [prompt, setPrompt] = useState('');
-  const [isGenerating, setIsGenerating] = useState(false);
-
-  const handleGenerate = async () => {
-    if (!prompt.trim()) return;
-    setIsGenerating(true);
-    // TODO: Add AI integration
-    setTimeout(() => setIsGenerating(false), 2000);
-  };
+  const [prompt, setPrompt] = useState("");
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-cyan-400 via-blue-500 to-indigo-600 flex items-center justify-center p-4">
@@ -24,10 +19,13 @@ export default function Home() {
             Your tropical cocktail companion
           </p>
         </div>
-        
+
         <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 shadow-2xl border border-white/20">
           <div className="mb-6">
-            <label htmlFor="prompt" className="block text-white text-lg font-medium mb-3">
+            <label
+              htmlFor="prompt"
+              className="block text-white text-lg font-medium mb-3"
+            >
               What kind of drink are you craving? 🍹
             </label>
             <textarea
@@ -39,23 +37,27 @@ export default function Home() {
               rows={4}
             />
           </div>
-          
+
           <button
-            onClick={handleGenerate}
-            disabled={!prompt.trim() || isGenerating}
+            onClick={() =>
+              startTransition(async () => {
+                router.push(`/recipe/${encodeURIComponent(prompt)}`);
+              })
+            }
+            disabled={!prompt.trim() || isPending}
             className="w-full bg-gradient-to-r from-orange-400 to-pink-500 text-white font-bold py-4 px-8 rounded-2xl text-xl shadow-lg hover:from-orange-500 hover:to-pink-600 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02] active:scale-[0.98]"
           >
-            {isGenerating ? (
+            {isPending ? (
               <span className="flex items-center justify-center gap-2">
                 <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                 Mixing your drink...
               </span>
             ) : (
-              'Generate Recipe 🥥'
+              "Generate Recipe 🥥"
             )}
           </button>
         </div>
-        
+
         <div className="text-center mt-8">
           <p className="text-cyan-100 text-sm">
             Powered by AI • Made with ❤️ for tropical vibes
