@@ -1,4 +1,5 @@
 import { Recipe } from "@/lib/schemas/recipe";
+import { Card } from "@/components/card";
 
 interface RecipeDisplayProps {
   recipe: Recipe;
@@ -16,7 +17,7 @@ export function RecipeDisplay({ recipe }: RecipeDisplayProps) {
       {/* Left Column - Ingredients & Info */}
       <div className="space-y-6">
         {/* Recipe Overview */}
-        <div className="bg-white/95 rounded-3xl p-8 shadow-xl">
+        <Card>
           <p className="text-gray-600 text-lg mb-6 leading-relaxed">
             {recipe.description}
           </p>
@@ -39,10 +40,10 @@ export function RecipeDisplay({ recipe }: RecipeDisplayProps) {
               <span className="font-semibold text-gray-800 capitalize">{recipe.ice}</span>
             </div>
           </div>
-        </div>
+        </Card>
 
         {/* Ingredients */}
-        <div className="bg-white/95 rounded-3xl p-8 shadow-xl">
+        <Card>
           <h3 className="text-2xl font-bold text-gray-800 mb-6">Ingredients</h3>
           <div className="space-y-3">
             {recipe.ingredients.map((ingredient, index) => (
@@ -54,13 +55,13 @@ export function RecipeDisplay({ recipe }: RecipeDisplayProps) {
               </div>
             ))}
           </div>
-        </div>
+        </Card>
       </div>
 
       {/* Right Column - Instructions */}
       <div className="space-y-6">
         {/* Instructions */}
-        <div className="bg-white/95 rounded-3xl p-8 shadow-xl">
+        <Card>
           <h3 className="text-2xl font-bold text-gray-800 mb-6">Instructions</h3>
           <div className="space-y-6">
             {recipe.instructions.map((instruction) => (
@@ -72,11 +73,11 @@ export function RecipeDisplay({ recipe }: RecipeDisplayProps) {
               </div>
             ))}
           </div>
-        </div>
+        </Card>
 
         {/* Garnish & Notes */}
         {(recipe.garnish || recipe.notes) && (
-          <div className="bg-white/95 rounded-3xl p-8 shadow-xl">
+          <Card>
             <h3 className="text-2xl font-bold text-gray-800 mb-6">Finishing Touches</h3>
             {recipe.garnish && (
               <div className="mb-4">
@@ -90,7 +91,7 @@ export function RecipeDisplay({ recipe }: RecipeDisplayProps) {
                 <p className="text-gray-600 leading-relaxed">{recipe.notes}</p>
               </div>
             )}
-          </div>
+          </Card>
         )}
       </div>
     </div>

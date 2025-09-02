@@ -1,6 +1,7 @@
 import { DrinkTitle } from "./drink-title";
 import { RecipeDisplay } from "./recipe-display";
 import { exampleRecipe } from "@/lib/schemas/example-recipe";
+import { Card } from "@/components/card";
 import Link from "next/link";
 
 interface RecipePageProps {
@@ -28,14 +29,14 @@ export default async function RecipePage({ params }: RecipePageProps) {
           <div className="w-20"></div>
         </div>
 
-        <div className="bg-white/95 rounded-3xl p-8 shadow-xl mb-6">
+        <Card className="mb-6">
           <h2 className="text-2xl font-semibold text-gray-800 mb-4">
             Your Request:
           </h2>
           <p className="text-gray-600 text-lg bg-gray-50 p-4 rounded-xl border">
             "{prompt}"
           </p>
-        </div>
+        </Card>
 
         <RecipeDisplay recipe={exampleRecipe} />
       </div>
