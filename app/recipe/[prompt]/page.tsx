@@ -1,6 +1,6 @@
 import { DrinkTitle } from "./drink-title";
 import { RecipeDisplay } from "./recipe-display";
-import { exampleRecipe } from "@/lib/schemas/example-recipe";
+import { generateRecipe } from "@/lib/generate-recipe";
 import { Card } from "@/components/card";
 import Link from "next/link";
 
@@ -12,6 +12,7 @@ interface RecipePageProps {
 
 export default async function RecipePage({ params }: RecipePageProps) {
   const prompt = decodeURIComponent((await params).prompt);
+  const recipe = await generateRecipe(prompt);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-cyan-400 via-blue-500 to-indigo-600 p-4">
@@ -38,7 +39,7 @@ export default async function RecipePage({ params }: RecipePageProps) {
           </p>
         </Card>
 
-        <RecipeDisplay recipe={exampleRecipe} />
+        <RecipeDisplay recipe={recipe} />
       </div>
     </div>
   );
