@@ -34,7 +34,7 @@ export default async function RecipePage({ params }: RecipePageProps) {
             Your Request:
           </h2>
           <p className="text-gray-600 text-lg bg-gray-50 p-4 rounded-xl border">
-            "{prompt}"
+            &quot;{prompt}&quot;
           </p>
         </Card>
 
