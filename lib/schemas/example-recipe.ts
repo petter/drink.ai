@@ -1,4 +1,4 @@
-import { Recipe, validateRecipe } from "./recipe";
+import { Recipe } from "./recipe";
 
 export const exampleRecipe: Recipe = {
   name: "Tropical Paradise Punch",
