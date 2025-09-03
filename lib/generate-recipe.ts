@@ -15,6 +15,7 @@ CRITICAL SCHEMA REQUIREMENTS:
 - ice: Must be exactly "cubed", "crushed", "sphere", "none", or "pebble"
 - flavorProfile: Array with at least one of: "sweet", "sour", "bitter", "fruity", "tropical", "citrusy", "creamy", "spicy", "refreshing", "strong"
 - ingredients: Array with at least 1 ingredient, each with type exactly: "spirit", "liqueur", "mixer", "juice", "syrup", "bitters", "garnish", "ice", "fruit", "herb", "spice", "other"
+- ingredient.unit: Must be exactly one of: "oz", "ml", "cl", "tsp", "tbsp", "cup", "dash", "splash", "pinch", "slice", "wedge", "sprig", "leaf", "piece", "drop" (or omit entirely)
 - instructions: Array with at least 1 step, numbered sequentially starting from 1
 - instruction.technique: Must be exactly one of: "shake", "stir", "build", "muddle", "blend", "layer", "float", "strain", "double_strain" (or omit entirely)
 - instruction.equipment: Array of exactly: "shaker", "strainer", "jigger", "muddler", "bar_spoon", "blender", "fine_strainer", "citrus_press", "knife", "cutting_board" (or omit entirely if no equipment needed)
