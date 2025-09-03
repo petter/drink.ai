@@ -8,17 +8,17 @@ export async function generateRecipe(prompt: string): Promise<Recipe> {
     schema: recipeSchema,
     prompt: `Create a detailed cocktail recipe based on this request: "${prompt}"
 
-CRITICAL SCHEMA REQUIREMENTS:
-- type: Must be exactly "cocktail", "mocktail", or "shot"
-- difficulty: Must be exactly "easy", "medium", or "hard" 
-- glass: Must be exactly one of: "highball", "rocks", "coupe", "martini", "hurricane", "tiki_mug", "wine_glass", "shot_glass", "mason_jar", "collins", "old_fashioned"
-- ice: Must be exactly "cubed", "crushed", "sphere", "none", or "pebble"
-- flavorProfile: Array with at least one of: "sweet", "sour", "bitter", "fruity", "tropical", "citrusy", "creamy", "spicy", "refreshing", "strong"
-- ingredients: Array with at least 1 ingredient, each with type exactly: "spirit", "liqueur", "mixer", "juice", "syrup", "bitters", "garnish", "ice", "fruit", "herb", "spice", "other"
-- ingredient.unit: Must be exactly one of: "oz", "ml", "cl", "tsp", "tbsp", "cup", "dash", "splash", "pinch", "slice", "wedge", "sprig", "leaf", "piece", "drop" (or omit entirely)
-- instructions: Array with at least 1 step, numbered sequentially starting from 1
-- instruction.technique: Must be exactly one of: "shake", "stir", "build", "muddle", "blend", "layer", "float", "strain", "double_strain" (or omit entirely)
-- instruction.equipment: Array of exactly: "shaker", "strainer", "jigger", "muddler", "bar_spoon", "blender", "fine_strainer", "citrus_press", "knife", "cutting_board" (or omit entirely if no equipment needed)
+GUIDELINES FOR RECIPE FIELDS:
+- type: Use "cocktail", "mocktail", or "shot"
+- difficulty: Use "easy", "medium", or "hard" 
+- glass: Use common glass types like "highball", "rocks", "coupe", "martini", "hurricane", etc.
+- ice: Use "cubed", "crushed", "sphere", "none", or "pebble"
+- flavorProfile: Include descriptive flavors like "sweet", "sour", "bitter", "fruity", "tropical", "citrusy", "creamy", "spicy", "refreshing", "strong"
+- ingredients: Include at least 1 ingredient with appropriate types like "spirit", "liqueur", "mixer", "juice", "syrup", "bitters", "garnish", etc.
+- ingredient.unit: Use standard units like "oz", "ml", "cl", "tsp", "tbsp", "cup", "dash", "splash", etc.
+- instructions: Include at least 1 step, numbered sequentially starting from 1
+- instruction.technique: Use common techniques like "shake", "stir", "build", "muddle", "blend", "layer", "float", "strain", etc.
+- instruction.equipment: Use common bar tools like "shaker", "strainer", "jigger", "muddler", "bar_spoon", etc.
 
 Guidelines:
 - If prompt is simple like "beer", create a beer cocktail or beer-based drink
@@ -27,10 +27,7 @@ Guidelines:
 - Suggest appropriate garnishes and glassware
 - Make the description enticing and vivid
 - Include helpful pro tips in the notes section
-- NEVER use "none" for equipment - either omit the equipment field entirely or use empty array []
-- NEVER use "garnish" as a technique - use "build", "shake", "stir", etc.
-
-Generate a complete recipe that follows all schema requirements exactly!`,
+Generate a complete, realistic recipe!`,
   });
 
   return response.object;
